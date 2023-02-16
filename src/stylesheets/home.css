@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+.home-title {
+  font-family: Playfair Display;
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: -.05em;
+  line-height: 120%;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  color: #0e1112;
+}
+
+.home-description {
+  font-size: 26px;
+  margin-bottom: 3rem;
+  align-items: center;
+}
+
+.home-highlight {
+  color: #b3613c;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.btn-google {
+    align-items: center;
+    background-color:#0e1112;
+    color: #ffffff;
+    display: flex;
+    font-family: Mulish;
+    font-size: 1rem;
+    font-weight: 600;
+    height: 66px;
+    justify-content: center;
+    padding: 18px 50px;
+    border: none;
+}
+  
+.home {
+  padding-top: 9rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  height: auto;
+  max-width: 50%;
+}
