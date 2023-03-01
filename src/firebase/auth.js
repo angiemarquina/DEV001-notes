@@ -1,4 +1,5 @@
 import { app } from '../firebase/config'
+
 import {
   getAuth,
   GoogleAuthProvider,

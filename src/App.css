@@ -1,3 +1,10 @@
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+:root {
+  --mulish-font: 'Mulish', sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,5 +12,6 @@
 }
 
 body {
-  background: #ffffff;
+  font-family: 'SF Pro Display', sans-serif;
 }
+
