@@ -1,23 +1,29 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { logout } from '../firebase/auth'
+import React, { useState } from 'react'
+import { BsFillPlusCircleFill } from 'react-icons/bs'
+import Modal from './modal'
+import Notes from './notes'
+import '../stylesheets/wall.css'
 
 function Wall () {
-  const navigate = useNavigate()
-  function signOut () {
-    logout()
-      .then(() => {
-        console.log('Sign-out successful')
-        navigate('/')
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+  const [showModal, setShowModal] = useState(false)
+  const handleShowModal = () => {
+    setShowModal(true)
   }
+
+  const handleCloseModal = () => {
+    setShowModal(false)
+  }
+
   return (
-    <div className='wall'>
-      <button onClick={signOut}>Log out</button>
-    </div>
+  <section className="wall-container">
+    <nav className='sidebar-container'>
+      <section className='sidebar'>
+        <BsFillPlusCircleFill className='plus-icon' onClick={handleShowModal}/>
+      </section>
+    </nav>
+    <Modal show={showModal} onClose={handleCloseModal} />
+    <Notes></Notes>
+  </section>
   )
 }
 
