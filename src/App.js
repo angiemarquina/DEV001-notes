@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
-import Home from './components/home'
-import Wall from './components/wall'
+import Home from './components/Home'
+import Wall from './components/Wall'
 
 function App () {
   return (

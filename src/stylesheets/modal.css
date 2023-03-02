@@ -9,7 +9,7 @@
 } 
 
 .show-modal-container {
-  background: #fff;
+  background: var(--white);
   border-radius: 20px;
   display: flex;
   flex-direction: column;

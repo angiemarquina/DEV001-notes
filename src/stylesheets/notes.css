@@ -2,10 +2,10 @@
   display: grid;
   align-items: center;
   grid-auto-rows: 200px;
-  grid-template-columns: repeat(4, 200px);
+  grid-template-columns: repeat(auto-fit, minmax(145px, 200px));
   gap: 4rem 2rem;
   justify-content: space-evenly;
-  padding: 5rem 0 0 5rem;
+  padding: 5rem 3rem 5rem 8rem;
 }
 
 .note {
@@ -17,6 +17,7 @@
   font-family: var(--mulish-font);
   padding: 10px;
 }
+
 .note h2, p {
   font-size: 1rem;
 }

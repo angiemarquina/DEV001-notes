@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
-import Modal from './modal'
-import Notes from './notes'
+import Modal from './Modal'
+import Notes from './Notes'
 import '../stylesheets/wall.css'
 
 function Wall () {
   const [showModal, setShowModal] = useState(false)
+
   const handleShowModal = () => {
     setShowModal(true)
   }
@@ -18,11 +19,17 @@ function Wall () {
   <section className="wall-container">
     <nav className='sidebar-container'>
       <section className='sidebar'>
-        <BsFillPlusCircleFill className='plus-icon' onClick={handleShowModal}/>
+        <BsFillPlusCircleFill
+          className='plus-icon'
+          onClick={handleShowModal}
+        />
       </section>
     </nav>
-    <Modal show={showModal} onClose={handleCloseModal} />
-    <Notes></Notes>
+    <Modal
+      show={showModal}
+      onClose={handleCloseModal}
+    />
+    <Notes/>
   </section>
   )
 }
