@@ -21,12 +21,15 @@ function Create () {
             name='inputTitle'
             onChange={(e) => setTitle(e.target.value)}
           />
-          <textarea className='note-input-text'
+          <textarea
+            className='note-input-text'
             placeholder='Start typing'
             name='inputText'
-            onChange={(e) => setDescription(e.target.value)} >
-          </textarea>
-          <button className='note-btn' onClick={createNote}>Submit</button>
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button
+            className='note-btn'
+            onClick={ createNote }>Submit</button>
         </section>
     </section>
   )
