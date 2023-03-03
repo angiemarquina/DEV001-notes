@@ -6,9 +6,11 @@ import '../stylesheets/create.css'
 function Create () {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [date, setDate] = useState('')
 
   const createNote = async () => {
-    await addDoc(collection(db, 'notes'), { title, description })
+    const date = new Date().toLocaleString()
+    await addDoc(collection(db, 'notes'), { title, description, date })
   }
 
   return (
@@ -29,7 +31,8 @@ function Create () {
           />
           <button
             className='note-btn'
-            onClick={ createNote }>Submit</button>
+            onClick={ createNote }
+            onChange={(e) => setDate(e.target.value)}>Submit</button>
         </section>
     </section>
   )
