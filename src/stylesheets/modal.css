@@ -1,4 +1,4 @@
-.modal-container {
+.modal-overlay {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -6,9 +6,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-} 
+}
 
-.show-modal-container {
+input, textarea {
+  font-family: var(--mulish-font);
+  border-radius: 10px;
+  padding: 10px 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  border-width: 2px;
+  border: 2px solid #ccc;
+  resize: none;
+}
+
+.note-input {
   background: var(--white);
   border-radius: 20px;
   display: flex;
@@ -17,10 +29,20 @@
   padding: 20px 30px 20px;
   width: 25rem;
   height: 20rem;
+  gap: 15px;
 }
 
-.close-icon {
+.note-btn {
+  border-radius: 8px;
+  align-items: center;
+  background-color: #0e1112;
+  color: var(--white);
   display: flex;
-  justify-content: flex-end;
-  padding: 0 0 25px;
+  font-family: var(--mulish-font);
+  font-size: 1rem;
+  font-weight: 600;
+  height: 50px;
+  justify-content: center;
+  padding: 18px 50px;
+  border: none;
 }
