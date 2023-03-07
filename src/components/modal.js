@@ -1,34 +1,16 @@
-import React from 'react'
-import { BsXLg } from 'react-icons/bs'
-import { addDoc, collection, updateDoc, doc } from 'firebase/firestore'
+import React, { useState } from 'react'
+import { addDoc, collection } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import '../stylesheets/modal.css'
-import { emptyNote } from './Wall'
 
-function Modal ({ content, isOpen, onClose, currentNote, setCurrentNote }) {
-  const createOrEditNote = async () => {
-    if (currentNote.id === '') {
-      const date = new Date().toLocaleString()
-      await addDoc(collection(db, 'notes'), {
-        title: currentNote.title,
-        description: currentNote.description,
-        date
-      })
-      setCurrentNote(emptyNote)
-    } else {
-      const date = new Date().toLocaleString()
-      await updateDoc(doc(db, 'notes', currentNote.id), {
-        title: currentNote.title,
-        description: currentNote.description,
-        date
-      })
-      setCurrentNote(emptyNote)
-    }
-  }
+function Modal ({ content, isOpen, onClose, moveData }) {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [date, setDate] = useState('')
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setCurrentNote((prevState) => ({ ...prevState, [name]: value }))
+  const createNote = async () => {
+    const date = new Date().toLocaleString()
+    await addDoc(collection(db, 'notes'), { title, description, date })
   }
 
   return (
@@ -36,40 +18,30 @@ function Modal ({ content, isOpen, onClose, currentNote, setCurrentNote }) {
       {isOpen && (
         <section className='modal-overlay'>
           <section className='note-input'>
-            <section className='close-icon'>
-              <BsXLg
-                onClick={() => {
-                  onClose()
-                }}
-              />
-            </section>
             <input
               className='note-input-title'
               type='text'
               placeholder='Title'
-              name='title'
-              value={currentNote.title}
-              // onChange={(e) => setCurrentNote((prevState) => ({ id: prevState.id, description: prevState.description, title: e.target.value }))}
-              // onChange={(e) => setCurrentNote((prevState) => ({ ...prevState, title: e.target.value }))}
-              onChange={handleChange}
+              name='inputTitle'
+              value={moveData ? moveData.title : ''}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <textarea
               className='note-input-text'
               placeholder='Start typing'
-              name='description'
-              value={currentNote.description}
-              // onChange={(e) => setCurrentNote((prevState) => ({ ...prevState, description: e.target.value }))}
-              onChange={handleChange}
+              name='inputText'
+              value={moveData ? moveData.description : ''}
+              onChange={(e) => setDescription(e.target.value)}
             />
             <button
               className='note-btn'
-              onClick={() => {
-                createOrEditNote()
+              onClick={ () => {
+                // colocar un ternario para crear y editar
+                createNote()
                 onClose()
               }}
-            >
-              {content}
-            </button>
+              onChange={(e) => setDate(e.target.value)}
+            >{content}</button>
           </section>
         </section>
       )}

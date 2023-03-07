@@ -1,43 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import {
-  collection,
-  doc,
-  deleteDoc,
-  onSnapshot,
-  query,
-  orderBy
-} from 'firebase/firestore'
+import { collection, doc, deleteDoc, onSnapshot, query, orderBy, getDoc } from 'firebase/firestore'
 import { db } from '../firebase/config'
-import {
-  BsFillPlusCircleFill,
-  BsPencilSquare,
-  BsTrashFill
-} from 'react-icons/bs'
+import { BsFillPlusCircleFill, BsPencilSquare, BsTrashFill } from 'react-icons/bs'
 import '../stylesheets/wall.css'
 import Modal from './Modal'
-export const emptyNote = {
-  id: '',
-  title: '',
-  description: ''
-}
 
 function Wall () {
   const [createModal, setCreateModal] = useState(false)
   const [editModal, setEditModal] = useState(false)
   const [notesList, setNotesList] = useState([])
-  const [currentNote, setCurrentNote] = useState(emptyNote)
+  const [moveData, setMoveData] = useState({})
 
   const getNotes = async () => {
-    onSnapshot(
-      query(collection(db, 'notes'), orderBy('date', 'desc')),
-      (querySnapshot) => {
-        const notes = []
-        querySnapshot.forEach((doc) => {
-          notes.push({ ...doc.data(), id: doc.id })
-        })
-        setNotesList(notes)
-      }
-    )
+    onSnapshot(query(collection(db, 'notes'), orderBy('date', 'desc')), (querySnapshot) => {
+      const notes = []
+      querySnapshot.forEach((doc) => {
+        notes.push({ ...doc.data(), id: doc.id })
+      })
+      setNotesList(notes)
+    })
   }
 
   useEffect(() => {
@@ -46,6 +27,14 @@ function Wall () {
 
   const deleteNote = async (id) => {
     await deleteDoc(doc(db, 'notes', id))
+  }
+
+  const getOneNote = async (id) => {
+    const docSnap = await getDoc(doc(db, 'notes', id))
+    const data = docSnap.data()
+    data.id = docSnap.id
+    setMoveData(data)
+    console.log(data)
   }
 
   return (
@@ -62,15 +51,12 @@ function Wall () {
         content='Submit'
         isOpen={createModal}
         onClose={() => setCreateModal(false)}
-        currentNote={currentNote}
-        setCurrentNote={setCurrentNote}
       />
       <Modal
         content='Update'
         isOpen={editModal}
         onClose={() => setEditModal(false)}
-        currentNote={currentNote}
-        setCurrentNote={setCurrentNote}
+        moveData={moveData}
       />
       <div className='notes-container'>
         {notesList.map((note) => (
@@ -84,7 +70,7 @@ function Wall () {
                   className='edit-icon'
                   onClick={() => {
                     setEditModal(true)
-                    setCurrentNote(note)
+                    getOneNote(note.id)
                   }}
                 />
                 <BsTrashFill

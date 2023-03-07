@@ -8,12 +8,6 @@
   justify-content: center;
 }
 
-.close-icon {
-  display: flex;
-  justify-content: flex-end;
-  padding: 0 0 15px;
-}
-
 input, textarea {
   font-family: var(--mulish-font);
   border-radius: 10px;
