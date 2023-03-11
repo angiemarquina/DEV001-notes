@@ -22,8 +22,7 @@ import { useNavigate } from 'react-router-dom'
 export const emptyNote = {
   id: '',
   title: '',
-  description: '',
-  userUid: ''
+  description: ''
 }
 
 function Wall () {
@@ -45,7 +44,7 @@ function Wall () {
         }
       )
     } else {
-      console.log('no existe usuario')
+      console.log('user doesnt exist')
     }
   }
 
@@ -69,7 +68,6 @@ function Wall () {
         <section className='sidebar'>
           <BsFillPlusCircleFill
             className='plus-icon'
-            data-testid='plus-icon'
             onClick={() => setCreateModal(true)}
           />
           <BsBoxArrowLeft
