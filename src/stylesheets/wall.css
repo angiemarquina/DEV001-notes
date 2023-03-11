@@ -12,9 +12,10 @@
   flex-direction: column;
   align-items: center;
   color: white;
+  gap: 20px;
 }
 
-.plus-icon {
+.plus-icon,.logout-icon {
   font-size: 2rem;
 }
 

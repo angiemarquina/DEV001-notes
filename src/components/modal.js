@@ -4,12 +4,13 @@ import { addDoc, collection, updateDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import '../stylesheets/modal.css'
 import { emptyNote } from './Wall'
+import { auth } from '../firebase/auth'
 
 function Modal ({ content, isOpen, onClose, currentNote, setCurrentNote }) {
   const createOrEditNote = async () => {
     if (currentNote.id === '') {
       const date = new Date().toLocaleString()
-      await addDoc(collection(db, 'notes'), {
+      await addDoc(collection(db, `notesfrom${auth.currentUser.uid}`), {
         title: currentNote.title,
         description: currentNote.description,
         date
@@ -17,7 +18,8 @@ function Modal ({ content, isOpen, onClose, currentNote, setCurrentNote }) {
       setCurrentNote(emptyNote)
     } else {
       const date = new Date().toLocaleString()
-      await updateDoc(doc(db, 'notes', currentNote.id), {
+      console.log(auth.currentUser.uid)
+      await updateDoc(doc(db, `notesfrom${auth.currentUser.uid}`, currentNote.id), {
         title: currentNote.title,
         description: currentNote.description,
         date

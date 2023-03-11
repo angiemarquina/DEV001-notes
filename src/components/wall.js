@@ -11,14 +11,19 @@ import { db } from '../firebase/config'
 import {
   BsFillPlusCircleFill,
   BsPencilSquare,
-  BsTrashFill
+  BsTrashFill,
+  BsBoxArrowLeft
 } from 'react-icons/bs'
 import '../stylesheets/wall.css'
 import Modal from './Modal'
+import { auth } from '../firebase/auth'
+import { signOut } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 export const emptyNote = {
   id: '',
   title: '',
-  description: ''
+  description: '',
+  userUid: ''
 }
 
 function Wall () {
@@ -28,16 +33,20 @@ function Wall () {
   const [currentNote, setCurrentNote] = useState(emptyNote)
 
   const getNotes = async () => {
-    onSnapshot(
-      query(collection(db, 'notes'), orderBy('date', 'desc')),
-      (querySnapshot) => {
-        const notes = []
-        querySnapshot.forEach((doc) => {
-          notes.push({ ...doc.data(), id: doc.id })
-        })
-        setNotesList(notes)
-      }
-    )
+    if (auth.currentUser) {
+      onSnapshot(
+        query(collection(db, `notesfrom${auth.currentUser.uid}`), orderBy('date', 'desc')),
+        (querySnapshot) => {
+          const notes = []
+          querySnapshot.forEach((doc) => {
+            notes.push({ ...doc.data(), id: doc.id })
+          })
+          setNotesList(notes)
+        }
+      )
+    } else {
+      console.log('no existe usuario')
+    }
   }
 
   useEffect(() => {
@@ -45,7 +54,13 @@ function Wall () {
   }, [])
 
   const deleteNote = async (id) => {
-    await deleteDoc(doc(db, 'notes', id))
+    await deleteDoc(doc(db, `notesfrom${auth.currentUser.uid}`, id))
+  }
+
+  const navigate = useNavigate()
+  const logout = async () => {
+    await signOut(auth)
+    navigate('/')
   }
 
   return (
@@ -54,7 +69,12 @@ function Wall () {
         <section className='sidebar'>
           <BsFillPlusCircleFill
             className='plus-icon'
+            data-testid='plus-icon'
             onClick={() => setCreateModal(true)}
+          />
+          <BsBoxArrowLeft
+            className='logout-icon'
+            onClick={logout}
           />
         </section>
       </nav>
