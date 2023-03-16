@@ -34,10 +34,7 @@ function Wall () {
   const getNotes = async () => {
     if (auth.currentUser) {
       onSnapshot(
-        query(
-          collection(db, `notesfrom${auth.currentUser.uid}`),
-          orderBy('date', 'desc')
-        ),
+        query(collection(db, `notesfrom${auth.currentUser.uid}`), orderBy('date', 'desc')),
         (querySnapshot) => {
           const notes = []
           querySnapshot.forEach((doc) => {

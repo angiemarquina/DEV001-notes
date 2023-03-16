@@ -20,14 +20,11 @@ function Modal ({ content, isOpen, onClose, currentNote, setCurrentNote }) {
     } else {
       const date = new Date().toLocaleString()
       console.log(auth.currentUser.uid)
-      await updateDoc(
-        doc(db, `notesfrom${auth.currentUser.uid}`, currentNote.id),
-        {
-          title: currentNote.title,
-          description: currentNote.description,
-          date
-        }
-      )
+      await updateDoc(doc(db, `notesfrom${auth.currentUser.uid}`, currentNote.id), {
+        title: currentNote.title,
+        description: currentNote.description,
+        date
+      })
       setCurrentNote(emptyNote)
     }
   }
