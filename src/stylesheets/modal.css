@@ -15,7 +15,7 @@
 }
 
 input, textarea {
-  font-family: var(--mulish-font);
+  font-family: var(--body-font);
   border-radius: 10px;
   padding: 10px 10px;
   font-size: 1rem;
@@ -44,7 +44,7 @@ input, textarea {
   background-color: #0e1112;
   color: var(--white);
   display: flex;
-  font-family: var(--mulish-font);
+  font-family: var(--body-font);
   font-size: 1rem;
   font-weight: 600;
   height: 50px;
