@@ -1,9 +1,17 @@
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@import url('https://v1.fontapi.ir/css/SFProDisplay:500');
 @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 :root {
-  --mulish-font: 'Mulish', sans-serif;
-  --white: #ffffff;
+  --white: #fffeff;
+  --orange: #b3613c;
+  --cremita: #f9f5ea;
+  --purpura: #c0a3ca;
+  --black: #000;
+  --body-font: 'Poppins', sans-serif;
+  --fw-medium: 500;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
 }
 
 * {
@@ -13,6 +21,7 @@
 }
 
 body {
-  font-family: 'SF Pro Display', sans-serif;
+  background: #fffeff;
+  font-family: 'Poppins', sans-serif;
 }
 

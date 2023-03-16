@@ -1,9 +1,9 @@
 .sidebar-container {
-  background: #bbcdd9;
   position: fixed;
   height: 100%;
-  width: 5.5rem;
-  box-shadow: 0 -1px 4px rgb(0 0 0 / 15%);
+  width: 15rem;
+  border-right: 1px solid #f0f1eb;
+  background: var(--orange);
 }
 
 .sidebar {
@@ -11,11 +11,47 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
 }
 
-.plus-icon {
+.plus-div, .logout-div {
+  display: flex;
+  gap: 1.5rem;
+  width: 200px;
+  height: 50px;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding-left: 1rem;
+}
+
+.plus-div:hover, .logout-div:hover {
+  background: var(--purpura);
+  border-radius: 5px;
+}
+
+.plus-icon, .logout-icon {
+  font-size: 1.5rem;
+  color: var(--cremita);
+}
+
+.sidebar p {
+  color: var(--cremita);
+  font-weight: 500;
+  font-weight: var(--fw-semi-bold);
+}
+
+.wall-container {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 3rem 3rem 16rem;
+  gap: 30px;
+}
+
+.title-notes {
+  color: #000;
   font-size: 2rem;
+  padding-left: 1rem;
+  font-weight: var(--fw-bold);
 }
 
 .notes-container {
@@ -25,28 +61,26 @@
   grid-template-columns: repeat(auto-fit, minmax(145px, 200px));
   gap: 4rem 2rem;
   justify-content: space-evenly;
-  padding: 5rem 3rem 5rem 8rem;
 }
 
 .note {
   height: 100%;
   cursor: pointer;
-  background: #afb5bf;
+  border: 1px solid #ccc;
   border-radius: 10px;
-  color: #fcfcfd;
-  font-family: var(--mulish-font);
   padding: 10px;
+  overflow-x: scroll;
 }
 
-.note h2, p {
+.note h2 {
   font-size: 1rem;
 }
 
 .date-and-icons {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  padding-top: 5px;
+  gap: 5px;
 }
 
 .note-date {
@@ -56,8 +90,19 @@
 .note-icons {
   display: flex;
   justify-content: flex-end;
+  gap: 5px;
+}
+
+.edit-btn, .delete-btn {
+  background: var(--white);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid var(--orange);
+  cursor: pointer;
 }
 
 .edit-icon, .delete-icon {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  color: var(--orange);
 }
